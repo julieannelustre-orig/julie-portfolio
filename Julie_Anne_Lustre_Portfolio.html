@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julie Anne D. Lustre — Executive & Operations Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17233B;
+    --ink-soft:#3B4A66;
+    --paper:#F0EFE7;
+    --paper-raised:#FAF9F4;
+    --brass:#A9834B;
+    --brass-dark:#8A6A39;
+    --teal:#2E6E62;
+    --line:#CBC4AF;
+    --shadow: 0 10px 30px rgba(23,35,59,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--brass); color:#fff;}
+
+  .display{font-family:'Fraunces', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  a{color:inherit;}
+
+  /* ---------- Texture ---------- */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(23,35,59,0.045) 1px, transparent 0);
+    background-size: 22px 22px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- Header ---------- */
+  header.top{
+    position:relative; z-index:5;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 28px 6vw 10px;
+  }
+  .brand{
+    display:flex; flex-direction:column; line-height:1.05;
+  }
+  .brand .name{
+    font-size:1.05rem; font-weight:600; letter-spacing:0.02em;
+  }
+  .brand .role{
+    font-size:0.72rem; color:var(--ink-soft); letter-spacing:0.08em; text-transform:uppercase; margin-top:3px;
+  }
+  .stamp-mini{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.65rem;
+    border:1.5px solid var(--brass);
+    color:var(--brass-dark);
+    padding:5px 10px;
+    border-radius:3px;
+    letter-spacing:0.08em;
+    transform:rotate(-2deg);
+    white-space:nowrap;
+  }
+
+  /* ---------- Folder Tabs ---------- */
+  nav.tabs{
+    position:sticky; top:0; z-index:20;
+    display:flex; gap:6px;
+    padding: 0 5vw;
+    background:var(--paper);
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{display:none;}
+  nav.tabs::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0;
+    height:3px; background:var(--ink); z-index:-1;
+  }
+  nav.tabs a{
+    position:relative;
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:#EDEAE0;
+    background:var(--ink-soft);
+    padding: 10px 20px 9px;
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    transition: all .25s ease;
+    flex-shrink:0;
+  }
+  nav.tabs a:hover{ background:var(--ink); color:#fff; transform:translateY(-2px); }
+  nav.tabs a.active{
+    background:var(--paper);
+    color:var(--ink);
+    font-weight:600;
+    transform:translateY(0);
+  }
+
+  main{ position:relative; z-index:2; }
+  section{
+    padding: 64px 6vw;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass-dark);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:1.5px; background:var(--brass);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+    padding-top:36px;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.6vw, 3.85rem);
+    line-height:1.05;
+    margin: 0 0 22px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--teal); font-weight:500;
+  }
+  .hero p.lede{
+    font-size:1.08rem; color:var(--ink-soft); max-width:46ch; margin-bottom:30px;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:3px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn.primary{ background:var(--ink); color:#F5F3EC; }
+  .btn.primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+  .btn.ghost{ background:transparent; border:1.5px solid var(--ink); color:var(--ink); }
+  .btn.ghost:hover{ background:var(--ink); color:#fff; }
+
+  /* logbook card */
+  .logbook{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    box-shadow:var(--shadow);
+    padding:22px 22px 20px;
+    transform:rotate(1.2deg);
+    position:relative;
+  }
+  .logbook::before{
+    content:"";
+    position:absolute; top:14px; left:-8px; right:-8px; bottom:-8px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--paper);
+    z-index:-1;
+    transform:rotate(-2deg);
+  }
+  .logbook-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom:1.5px dashed var(--line);
+    padding-bottom:10px; margin-bottom:12px;
+  }
+  .logbook-head .title{ font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600;}
+  .logbook-head .date{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-soft);}
+  .log-item{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:0.86rem;
+    padding:8px 0;
+    border-bottom:1px solid #E4E1D4;
+  }
+  .log-item:last-child{ border-bottom:none; }
+  .log-item .time{ font-family:'IBM Plex Mono',monospace; color:var(--brass-dark); font-size:0.76rem; flex-shrink:0; width:52px;}
+  .log-item .check{
+    width:15px; height:15px; border-radius:3px; border:1.5px solid var(--teal);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+  }
+  .log-item .check::after{ content:"✓"; color:var(--teal); font-size:10px; line-height:1;}
+  .log-item .txt{ color:var(--ink); }
+  .log-item .txt b{ color:var(--ink-soft); font-weight:600;}
+
+  /* ---------- Section headings ---------- */
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+    font-weight:600;
+    margin:0 0 34px;
+  }
+
+  /* ---------- Summary ---------- */
+  .summary-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap:48px; align-items:start;
+  }
+  .summary-grid p{ font-size:1.02rem; line-height:1.75; color:var(--ink-soft); }
+  .fact-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px;
+  }
+  .fact-card .fact{ display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid #E4E1D4; font-size:0.88rem;}
+  .fact-card .fact:last-child{border-bottom:none;}
+  .fact-card .fact .k{ color:var(--ink-soft); }
+  .fact-card .fact .v{ font-weight:600; text-align:right; }
+
+  /* ---------- Skills as folder cards ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
+  }
+  .skill-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius: 4px 10px 10px 10px;
+    padding:20px 20px 18px;
+    position:relative;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .skill-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .skill-card .tab{
+    position:absolute; top:-11px; left:18px;
+    background:var(--brass); color:#fff;
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.06em;
+    padding:4px 10px; border-radius:3px 3px 0 0; text-transform:uppercase;
+  }
+  .skill-card h3{ font-family:'Fraunces',serif; font-size:1.05rem; margin:10px 0 8px; font-weight:600;}
+  .skill-card p{ font-size:0.87rem; color:var(--ink-soft); margin:0; line-height:1.55;}
+
+  /* ---------- Experience timeline (ledger) ---------- */
+  .ledger{ border-top:2px solid var(--ink); }
+  .ledger-row{
+    display:grid; grid-template-columns: 150px 1fr;
+    gap:28px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .ledger-row .when{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--brass-dark); padding-top:4px;
+  }
+  .ledger-row .what h3{ font-family:'Fraunces',serif; font-size:1.25rem; margin:0 0 4px; font-weight:600;}
+  .ledger-row .what .co{ color:var(--ink-soft); font-size:0.88rem; margin-bottom:12px; }
+  .ledger-row ul{ margin:0; padding-left:18px; }
+  .ledger-row li{ font-size:0.9rem; color:var(--ink); margin-bottom:7px; line-height:1.55;}
+
+  /* ---------- Wins / signature ---------- */
+  .wins-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;
+  }
+  .win-card{
+    background:var(--ink);
+    color:#F1EEE3;
+    border-radius:8px;
+    padding:24px 22px;
+    position:relative;
+    overflow:hidden;
+    opacity:0; transform:translateY(16px) rotate(-1deg);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .win-card.in{ opacity:1; transform:translateY(0) rotate(0deg); }
+  .win-card .stamp{
+    position:absolute; top:16px; right:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.6rem; letter-spacing:0.08em;
+    border:1.5px solid var(--teal); color:var(--teal);
+    padding:3px 8px; border-radius:3px; transform:rotate(6deg);
+  }
+  .win-card .num{ font-family:'Fraunces',serif; font-size:2.1rem; font-weight:600; color:var(--brass); line-height:1; margin-bottom:6px;}
+  .win-card h4{ margin:0 0 8px; font-size:1rem; font-weight:600; }
+  .win-card p{ margin:0; font-size:0.85rem; color:#C9C6BA; line-height:1.55; }
+
+  /* ---------- Tools ---------- */
+  .tools-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tool-chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    padding:9px 16px;
+    border-radius:20px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    background:var(--ink);
+    color:#F1EEE3;
+    border-radius:10px;
+    padding:44px 6vw;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;
+  }
+  .contact-card h2{ font-family:'Fraunces',serif; font-size:2rem; margin:0 0 8px; font-weight:600;}
+  .contact-card p{ margin:0; color:#C9C6BA; max-width:38ch;}
+  .contact-links{ display:flex; flex-direction:column; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:0.88rem;}
+  .contact-links a{ text-decoration:none; border-bottom:1px solid var(--brass); padding-bottom:2px; color:#F1EEE3;}
+  .contact-links a:hover{ color:var(--brass); }
+
+  footer{
+    text-align:center; padding:26px; font-size:0.72rem; color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (max-width: 880px){
+    .hero{ grid-template-columns:1fr; }
+    .summary-grid{ grid-template-columns:1fr; }
+    .ledger-row{ grid-template-columns:1fr; gap:8px; }
+    .contact-card{ flex-direction:column; align-items:flex-start; text-align:left; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="name display">Julie Anne D. Lustre</span>
+    <span class="role">Executive &amp; Operations Assistant</span>
+  </div>
+  <div class="stamp-mini">FILE NO. EA–07YRS</div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <a href="#summary" class="active">Summary</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#wins">Wins</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+  <section class="hero" id="top">
+    <div>
+      <div class="eyebrow">Right hand to CEOs &amp; founders, 7+ years</div>
+      <h1 class="display">The one who makes sure <em>nothing</em> falls through the cracks.</h1>
+      <p class="lede">I run calendars, inboxes, and operations for busy executives — and I build the systems that keep them running even when I'm not the one watching.</p>
+      <div class="cta-row">
+        <a href="mailto:julieannelustre@gmail.com" class="btn primary">✎ Get in touch</a>
+        <a href="#experience" class="btn ghost">View the record</a>
+      </div>
+    </div>
+
+    <div class="logbook">
+      <div class="logbook-head">
+        <span class="title">Daily Log</span>
+        <span class="date mono">TODAY</span>
+      </div>
+      <div class="log-item"><span class="time mono">08:40</span><span class="check"></span><span class="txt">Inbox triaged, <b>3 flagged</b> for CEO review</span></div>
+      <div class="log-item"><span class="time mono">09:15</span><span class="check"></span><span class="txt">Calendar conflict resolved before it reached leadership</span></div>
+      <div class="log-item"><span class="time mono">11:00</span><span class="check"></span><span class="txt">Vendor quotes compared, shortlist sent</span></div>
+      <div class="log-item"><span class="time mono">14:30</span><span class="check"></span><span class="txt">Onboarding SOP updated in <b>Asana</b></span></div>
+      <div class="log-item"><span class="time mono">17:00</span><span class="check"></span><span class="txt">Weekly summary drafted for review</span></div>
+    </div>
+  </section>
+
+  <section id="summary">
+    <div class="eyebrow">Case Summary</div>
+    <h2 class="section-title reveal">Who I am on the job</h2>
+    <div class="summary-grid">
+      <p class="reveal">
+        I've spent the last seven years as the person CEOs and founders hand things to and stop thinking about.
+        My work covers calendars, inboxes, CRMs, vendor and client coordination, and the quiet operational
+        work that keeps a business from tripping over its own growth. I don't wait for instructions — if I see
+        a process that doesn't exist yet, I build it. If I see a problem before my executive does, I fix it or
+        flag it before it becomes theirs to solve. I use AI tools like Claude and ChatGPT as part of my actual
+        daily workflow, not as a novelty, and I treat confidentiality as a non-negotiable, not a policy line.
+      </p>
+      <div class="fact-card reveal">
+        <div class="fact"><span class="k">Experience</span><span class="v">7+ years</span></div>
+        <div class="fact"><span class="k">Executives supported</span><span class="v">3 CEOs</span></div>
+        <div class="fact"><span class="k">Based in</span><span class="v">Philippines</span></div>
+        <div class="fact"><span class="k">Works across</span><span class="v">US · UK · MEA hours</span></div>
+        <div class="fact"><span class="k">Core tools</span><span class="v">Google · HubSpot · Asana</span></div>
+        <div class="fact"><span class="k">AI-fluent</span><span class="v">Claude · ChatGPT</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="eyebrow">Service Record</div>
+    <h2 class="section-title reveal">Where I've worked</h2>
+    <div class="ledger">
+      <div class="ledger-row reveal">
+        <div class="when">OCT 2025 —<br>AUG 2026</div>
+        <div class="what">
+          <h3>Executive Assistant to CEO</h3>
+          <div class="co">Joyfolie</div>
+          <ul>
+            <li>Organized the CEO's inbox and calendar daily, prioritizing what needed her attention and what didn't</li>
+            <li>Built a new-hire onboarding SOP in Asana from scratch, replacing a process that didn't exist before</li>
+            <li>Caught an unauthorized ~$3,000 charge on a company AMEX statement and recovered the full refund</li>
+            <li>Flagged unused software subscriptions before they became ongoing, invisible cost</li>
+            <li>Coordinated travel, vendors, and residential matters, and drafted correspondence using AI tools to move faster</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="when">AUG 2022 —<br>AUG 2025</div>
+        <div class="what">
+          <h3>Executive Assistant to CEO</h3>
+          <div class="co">ToolWorqs Fabrication Systems</div>
+          <ul>
+            <li>Managed a calendar across multiple time zones, reclaiming 15+ executive hours a week through time-blocking</li>
+            <li>Administered HubSpot CRM end-to-end, keeping the pipeline clean and follow-up consistent</li>
+            <li>Designed the company's first SOP libraries and operational dashboards in Asana and Trello</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="when">JUN 2013 —<br>MAR 2018</div>
+        <div class="what">
+          <h3>Executive Assistant &amp; Document Controller</h3>
+          <div class="co">Arcadis Middle East</div>
+          <ul>
+            <li>Built a centralized calendar and document control system that eliminated scheduling conflicts entirely</li>
+            <li>The system was later adopted as the regional standard across the business</li>
+            <li>Prepared executive reports translating complex data into clear, actionable insight</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Open Files</div>
+    <h2 class="section-title reveal">What I handle</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><span class="tab">01</span>
+        <h3>Communication</h3>
+        <p>Inbox, Slack, and message triage — flagging what matters and summarizing the rest into something you can skim in seconds.</p>
+      </div>
+      <div class="skill-card reveal"><span class="tab">02</span>
+        <h3>Calendar &amp; Scheduling</h3>
+        <p>Multi-time-zone calendars, conflict resolution, and buffer time built in before it becomes a domino effect.</p>
+      </div>
+      <div class="skill-card reveal"><span class="tab">03</span>
+        <h3>Client Follow-Up</h3>
+        <p>Tracking outstanding requests so every enquiry gets an answer — nothing quietly goes cold.</p>
+      </div>
+      <div class="skill-card reveal"><span class="tab">04</span>
+        <h3>Systems &amp; SOPs</h3>
+        <p>Turning undocumented, tribal-knowledge processes into a guide anyone on the team can follow.</p>
+      </div>
+      <div class="skill-card reveal"><span class="tab">05</span>
+        <h3>AI-Enabled Work</h3>
+        <p>Using Claude and ChatGPT daily to draft, summarize, and research — then editing every output myself.</p>
+      </div>
+      <div class="skill-card reveal"><span class="tab">06</span>
+        <h3>CRM &amp; Task Tracking</h3>
+        <p>HubSpot pipelines, Asana boards, Trello dashboards — kept current, not just kept.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="wins">
+    <div class="eyebrow">Closed Cases</div>
+    <h2 class="section-title reveal">Moments that mattered</h2>
+    <div class="wins-grid">
+      <div class="win-card"><span class="stamp">CAUGHT</span>
+        <div class="num">$3,000</div>
+        <h4>Fraud caught &amp; refunded</h4>
+        <p>Spotted inconsistent Amazon charges on a CEO's AMEX statement, escalated it, and recovered the full amount.</p>
+      </div>
+      <div class="win-card"><span class="stamp">BUILT</span>
+        <div class="num">0 → 1</div>
+        <h4>Onboarding SOP</h4>
+        <p>There was no onboarding process at all. I built one in Asana that's now the team standard.</p>
+      </div>
+      <div class="win-card"><span class="stamp">RECLAIMED</span>
+        <div class="num">15+ hrs</div>
+        <h4>Weekly, back to the CEO</h4>
+        <p>Structured time-blocking across time zones gave the executive back hours every single week.</p>
+      </div>
+      <div class="win-card"><span class="stamp">ADOPTED</span>
+        <div class="num">100%</div>
+        <h4>Scheduling conflicts eliminated</h4>
+        <p>The calendar system I built at Arcadis was later rolled out as the regional standard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="eyebrow">Toolbelt</div>
+    <h2 class="section-title reveal">What I work in</h2>
+    <div class="tools-row reveal">
+      <span class="tool-chip">Google Workspace</span>
+      <span class="tool-chip">Microsoft Office</span>
+      <span class="tool-chip">Slack</span>
+      <span class="tool-chip">HubSpot</span>
+      <span class="tool-chip">Asana</span>
+      <span class="tool-chip">Trello</span>
+      <span class="tool-chip">Calendly</span>
+      <span class="tool-chip">Zapier</span>
+      <span class="tool-chip">Canva</span>
+      <span class="tool-chip">Claude AI</span>
+      <span class="tool-chip">ChatGPT</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card reveal">
+      <div>
+        <h2 class="display">Let's talk.</h2>
+        <p>If you need someone to hold the operation together while your name stays on the door, I'd love to hear about the role.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:julieannelustre@gmail.com">julieannelustre@gmail.com</a>
+        <a href="tel:+639566882924">+63 956 688 2924</a>
+        <a href="https://linkedin.com/in/julieannelustre" target="_blank" rel="noopener">linkedin.com/in/julieannelustre</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>FILE CLOSED — REFERENCES AVAILABLE ON REQUEST</footer>
+
+<script>
+  // Tab active state on scroll
+  const sections = ['summary','experience','skills','wins','contact'].map(id=>document.getElementById(id));
+  const tabLinks = Array.from(document.querySelectorAll('nav.tabs a'));
+  function onScroll(){
+    let current = sections[0].id;
+    const y = window.scrollY + 140;
+    sections.forEach(sec=>{ if(sec.offsetTop <= y) current = sec.id; });
+    tabLinks.forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal, .win-card');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
